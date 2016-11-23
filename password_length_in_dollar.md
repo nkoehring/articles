@@ -155,7 +155,7 @@ political nonstop kittens notice seal | x             | x          | x
 
 The used password complexity is 52.56 bits (eg `ke1r$u@U`):
 
-.        hash |  Amazon | Brutalis
+         hash |  Amazon | Brutalis
 --------------|---------|---------
           MD5 |      2d |    9.2h
         Skype |      2d |   17.7h
@@ -169,9 +169,9 @@ BitcoinWallet |  14996y |   5835y
        SHA256 |      7d |      4d
        BCrypt |   6194y |   1989y
 
-(1) VeraCrypt PBKDF2-HMAC-Whirlpool + XTS 512bit (super duper paranoid settings)
-(2) TrueCrypt PBKDF2-HMAC-Whirlpool + XTS 512bit
-(3) Blockchain MyWallet: https://blockchain.info/wallet/
+  1. VeraCrypt PBKDF2-HMAC-Whirlpool + XTS 512bit (super duper paranoid settings)
+  2. TrueCrypt PBKDF2-HMAC-Whirlpool + XTS 512bit
+  3. Blockchain MyWallet: https://blockchain.info/wallet/
 
 http://hashcat.net/hashcat/
 https://www.praetorian.com/blog/statistics-will-crack-your-password-mask-structure
