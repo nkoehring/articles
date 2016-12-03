@@ -13,7 +13,7 @@ end
 
 
 def hr(v)
-  return "#{v}s" if v < 60
+  return "#{v.round(2)}s" if v < 60
   return "#{(v / 60.0).round(2)}m" if v < 3600
   return "#{(v / 3600.0).round(2)}h" if v < 3600*24
   return "#{(v / 3600.0 / 24).ceil}d" if v < 3600*24*365
@@ -29,21 +29,26 @@ end
 #
 # Params: t – cracking time for one unit/instance in seconds
 # Returns {price, units}
-def cost(speed, complexity, multiplier)
+def cost(speed, complexity)
   t = complexity / speed.to_f
   days = t / 3600.0 / 24.0
   units = (days / 30.0).ceil
-  price = units * multiplier
-  {time: t, price: price, units: units}
+  # price = units * multiplier
+  {time: t, units: units}
 end
 
 def brutalis(speed, complexity)
-  cost(speed, complexity, 18500)
+  price_per_unit = 18500
+  c = cost(speed, complexity)
+  c[:price] = c[:units] * price_per_unit
+  c
 end
 
 def amazon(speed, complexity)
-  # instance for 30 days: 30 * 24 * 14.4 = 10368
-  cost(speed, complexity, 10368)
+  price_per_second = 14.4 / 3600    # 14.4 USD per hour
+  c = cost(speed, complexity)
+  c[:price] = c[:time] * price_per_second * c[:units]
+  c
 end
 
 
@@ -71,6 +76,6 @@ speeds.each_pair do |name, speed|
   ec2_t = hr(ec2[:time]).to_s.rjust(16)
   bru_t = hr(bru[:time]).to_s.rjust(16)
 
-  puts "#{name} |#{ec2_t} |#{bru_t} | $#{ec2[:price]} n=#{ec2[:units]} | $#{bru[:price]} n=#{bru[:units]}"
+  puts "#{name} |#{ec2_t} |#{bru_t} | $#{ec2[:price].round(2)} n=#{ec2[:units]} | $#{bru[:price].round(2)} n=#{bru[:units]}"
 
 end

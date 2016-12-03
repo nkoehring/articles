@@ -155,7 +155,7 @@ political nonstop kittens notice seal | x             | x          | x
 
 The used password complexity is 52.56 bits (eg `ke1r$u@U`):
 
-         hash |  Amazon | Brutalis | price to crack in roughly a month
+         hash |  Amazon | Brutalis | price to crack in less than a month
 --------------|---------|----------|----------------------------------
           MD5 |      2d |    9.2h  | ~$700 (1 EC2 instance)
         Skype |      2d |   17.7h  | ~$700 (1 EC2 instance)
