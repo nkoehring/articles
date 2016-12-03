@@ -116,10 +116,16 @@ around the core of the Milkyway. This is the so called [galactic year](https://e
 The sun exists since around 20 galactic years. To crack such a password, even
 when hashed in MD5 takes 3 trillion (million million) galactic years.
 
+Of course nobody would ever attempt to do this. There are many possibilities to
+crack a password faster. Explaining some of them would easily fill another
+article, so I leave you here. Sorry.
 
+## Links
 
-http://hashcat.net/hashcat/
-https://www.praetorian.com/blog/statistics-will-crack-your-password-mask-structure
-https://password-hashing.net/
-https://www.randomlists.com/random-words
+To find your way into the topic, you might visit some of the following links:
+
+* [The fastest bruteforce password cracker](http://hashcat.net/hashcat/)
+* [More about password cracking methods](https://www.praetorian.com/blog/statistics-will-crack-your-password-mask-structure)
+* [Password hashing competition](https://password-hashing.net/)
+* [Random word generator for long but memorisable passwords](https://www.randomlists.com/random-words)
 
