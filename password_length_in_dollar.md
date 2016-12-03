@@ -157,17 +157,17 @@ The used password complexity is 52.56 bits (eg `ke1r$u@U`):
 
          hash |  Amazon | Brutalis | price to crack in less than a month
 --------------|---------|----------|----------------------------------
-          MD5 |      2d |    9.2h  | ~$700 (1 EC2 instance)
-        Skype |      2d |   17.7h  | ~$700 (1 EC2 instance)
-   AndroidPIN |     10y |      5y  | ~$1.13M (61 Brutalis)
-    MyWallet³ |    265d |    191d  | ~$110000 (6 Brutalis)
-BitcoinWallet |  14996y |   5835y  | 
-         WPA2 |    160y |     67y  | 
-     LastPass |     24y |     12y  | 
-   TrueCrypt² |   1144y |    718y  | 
-   VeraCrypt¹ | 588867y | 353320y  | 
-       SHA256 |      7d |      4d  | 
-       BCrypt |   6194y |   1989y  | 
+          MD5 |      2d |    9.2h  | ~$362 (1 EC2 instance)
+        Skype |      2d |   17.7h  | ~$567 (1 EC2 instance)
+       SHA256 |      7d |      4d  | ~$2162 (1 EC2 instance)
+         WPA2 |    160y |     67y  | ~$14.9M (806 Brutalis)
+   AndroidPIN |     10y |      5y  | ~$1.09M (59 Brutalis)
+    MyWallet³ |    265d |    191d  | ~$129500 (7 Brutalis)
+BitcoinWallet |  14996y |   5835y  | ~$1.3B (71,038 Brutalis)
+     LastPass |     24y |     12y  | ~$2.6M (139 Brutalis)
+   TrueCrypt² |   1144y |    718y  | ~$162M (8,742 Brutalis)
+   VeraCrypt¹ | 588867y | 353320y  | ~$79.6B (4,301,668 Brutalis)
+       BCrypt |   6194y |   1989y  | ~$448M (24,215 Brutalis)
 
   1. VeraCrypt PBKDF2-HMAC-Whirlpool + XTS 512bit (super duper paranoid settings)
   2. TrueCrypt PBKDF2-HMAC-Whirlpool + XTS 512bit
