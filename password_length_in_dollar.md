@@ -44,135 +44,82 @@ I didn't try the password cracking myself, and neither did I ask a friend (inser
 
 ## The results
 
-Now to the numbers. I created the numeric password examples by raving over the keyboard. Most other examples are generated with [pwgen](http://pwgen.sourceforge.net).
+I will compare some widely used password hashing methods, programs and
+protocols for four different password complexity categories:
 
-For comparison I will show all examples for the typically used hashing function SHA256 and the way more secure BCrypt with default settings on the BSD operating system. Look into the benchmark tables for comparison with other hashing solutions (hashcat support 160 of them).
+ * eight numeric digits (might be your birthday)
+ * eight alphanumeric characters (eg 'pa55W0Rd')
+ * eigth alphanumeric characters mixed with special character (eg 'pa$$W0Rd')
+ * a long memorisable pass sentence ('correct horse battery staple')
 
-### Numeric passwords
-
-Only 10<sup>n</sup> combinations, super weak!
-
-*SHA256*
-
-Example      | t p2.16xlarge | t brutalis | minimal cost | comment
--------------|---------------|------------|--------------|-------------------
-12091972     | x             | x          | x            | Someones birthday?
-8847324478   | x             | x          | x            | 10 digits
-894839243243 | x             | x          | x            | 12 digits
-
-*BCrypt*
-
-Example      | t p2.16xlarge | t brutalis | minimal cost | comment
--------------|---------------|------------|--------------|-------------------
-12091972     | x             | x          | x            | Someones birthday?
-8847324478   | x             | x          | x            | 10 digits
-894839243243 | x             | x          | x            | 12 digits
-
-### Letters and Numbers
-
-Up to 62 combinations. Potentially strong but hard to memorise:
-
-*SHA256*
-
-Example      | t p2.16xlarge | t brutalis | minimal cost | comment
--------------|---------------|------------|--------------|-------------------
-Yae4och8     | x             | x          | x            | 8 characters
-yae4och8     | x             | x          | x            | no mixed case for comparison
-uoGEi7ipho   | x             | x          | x            | 10 characters
-eEY9feeg8G5y | x             | x          | x            | 12 characters
-
-*BCrypt*
-
-Example      | t p2.16xlarge | t brutalis | minimal cost | comment
--------------|---------------|------------|--------------|-------------------
-Yae4och8     | x             | x          | x            | 8 characters
-yae4och8     | x             | x          | x            | no mixed case for comparison
-uoGEi7ipho   | x             | x          | x            | 10 characters
-eEY9feeg8G5y | x             | x          | x            | 12 characters
-
-### Special characters
-
-Up to 95 combinations. Stronger and even harder to memorise:
-
-*SHA256*
-
-Example      | t p2.16xlarge | t brutalis | minimal cost | comment
--------------|---------------|------------|--------------|-------------------
-ke1r$u@U     | x             | x          | x            | 8 characters
-Zoo(qu4ieN   | x             | x          | x            | 10 characters
-Que/z;ee1UPh | x             | x          | x            | 12 characters
-
-*BCrypt*
-
-Example      | t p2.16xlarge | t brutalis | minimal cost | comment
--------------|---------------|------------|--------------|-------------------
-ke1r$u@U     | x             | x          | x            | 8 characters
-Zoo(qu4ieN   | x             | x          | x            | 10 characters
-Que/z;ee1UPh | x             | x          | x            | 12 characters
-
-### Extended ASCII character set
-
-Up to 224 combinations. If you can remember numerous long passwords of this type, you might consider participating in memory challenges.
-
-*SHA256*
-
-Example      | t p2.16xlarge | t brutalis | minimal cost | comment
--------------|---------------|------------|--------------|-------------------
-eeh#e6Eá     | x             | x          | x            | 8 characters
-Kahy?eÿ,3G   | x             | x          | x            | 10 characters
-Eijahj8Siøôp | x             | x          | x            | 12 characters
-
-*BCrypt*
-
-Example      | t p2.16xlarge | t brutalis | minimal cost | comment
--------------|---------------|------------|--------------|-------------------
-eeh#e6Eá     | x             | x          | x            | 8 characters
-Kahy?eÿ,3G   | x             | x          | x            | 10 characters
-Eijahj8Siøôp | x             | x          | x            | 12 characters
-
-### Long but memorisable passwords
-
-Up to 32 combinations, no capital letters, no numbers, only words and spaces. The first one is a cartoon character, the others are generated using https://www.randomlists.com/random-words .
-
-*SHA256*
-
-Example                               | t p2.16xlarge | t brutalis | minimal cost
---------------------------------------|---------------|------------|-------------
-horace horsecollar                    | x             | x          | x
-scent injure rail breakable           | x             | x          | x
-political nonstop kittens notice seal | x             | x          | x
-
-*BCrypt*
-
-Example                               | t p2.16xlarge | t brutalis | minimal cost
---------------------------------------|---------------|------------|-------------
-horace horsecollar                    | x             | x          | x
-scent injure rail breakable           | x             | x          | x
-political nonstop kittens notice seal | x             | x          | x
-
-
-## Some highlights from other algorithms:
-
-The used password complexity is 52.56 bits (eg `ke1r$u@U`):
+### eight numeric digits (might be your birthday)
 
          hash |  Amazon | Brutalis | price to crack in less than a month
---------------|---------|----------|----------------------------------
+--------------|---------|----------|------------------------------------
+          MD5 |    0.0s |     0.0s | $0.01 (1 EC2 instance)
+        Skype |    0.0s |     0.0s | $0.01 (1 EC2 instance)
+         WPA2 |   1.27m |   31.47s | $0.30 (1 EC2 instance)
+       SHA256 |   0.01s |     0.0s | $0.01 (1 EC2 instance)
+       BCrypt |   49.1m |   15.77m | $11.78 (1 EC2 instance)
+   AndroidPIN |   4.65s |     2.3s | $0.02 (1 EC2 instance)
+     MyWallet |   0.34s |    0.25s | $0.01 (1 EC2 instance)
+BitcoinWallet |   1.98h |   46.26m | $28.53 (1 EC2 instance)
+     LastPass |  11.07s |     5.4s | $0.04 (1 EC2 instance)
+    TrueCrypt |   9.06m |    5.69m | $2.18 (1 EC2 instance)
+    VeraCrypt |      4d |       2d | $1120.45 (1 EC2 instance)
+
+Conclusion: Don't do this. Never ever do this.
+
+### eight alphanumeric characters (eg 'pa55W0Rd')
+
+         hash |  Amazon | Brutalis | price to crack in less than a month
+--------------|---------|----------|------------------------------------
+          MD5 |  49.65m |   18.17m | $11.92 (1 EC2 instance)
+        Skype |    1.3h |   34.92m | $18.67 (1 EC2 instance)
+         WPA2 |      6y |       3y | $499500 (27 Brutalis)
+       SHA256 |   4.94h |    2.64h | $71.15 (1 EC2 instance)
+       BCrypt |    204y |      66y | $14.7M (797 Brutalis)
+   AndroidPIN |    118d |      59d | $37000 (2 Brutalis)
+     MyWallet |      9d |       7d | $3003.3 (1 EC2 instance)
+BitcoinWallet |    494y |     193y | $43.25M (2338 Brutalis)
+     LastPass |    280d |     137d | $92,500 (5 Brutalis)
+    TrueCrypt |     38y |      24y | $5.3M (288 Brutalis)
+    VeraCrypt |  19381y |   11629y | $2.62B (141574 Brutalis)
+
+### eigth alphanumeric characters mixed with special character (eg 'pa$$W0Rd')
+
+         hash |  Amazon | Brutalis | price to crack in less than a month
+--------------|---------|----------|------------------------------------
           MD5 |      2d |    9.2h  | ~$362 (1 EC2 instance)
         Skype |      2d |   17.7h  | ~$567 (1 EC2 instance)
-       SHA256 |      7d |      4d  | ~$2162 (1 EC2 instance)
          WPA2 |    160y |     67y  | ~$14.9M (806 Brutalis)
+       SHA256 |      7d |      4d  | ~$2162 (1 EC2 instance)
+       BCrypt |   6194y |   1989y  | ~$448M (24,215 Brutalis)
    AndroidPIN |     10y |      5y  | ~$1.09M (59 Brutalis)
     MyWallet³ |    265d |    191d  | ~$129500 (7 Brutalis)
 BitcoinWallet |  14996y |   5835y  | ~$1.3B (71,038 Brutalis)
      LastPass |     24y |     12y  | ~$2.6M (139 Brutalis)
    TrueCrypt² |   1144y |    718y  | ~$162M (8,742 Brutalis)
    VeraCrypt¹ | 588867y | 353320y  | ~$79.6B (4,301,668 Brutalis)
-       BCrypt |   6194y |   1989y  | ~$448M (24,215 Brutalis)
 
   1. VeraCrypt PBKDF2-HMAC-Whirlpool + XTS 512bit (super duper paranoid settings)
   2. TrueCrypt PBKDF2-HMAC-Whirlpool + XTS 512bit
   3. Blockchain MyWallet: https://blockchain.info/wallet/
 
+### a long memorisable pass sentence ('correct horse battery staple')
+
+Okay, this doesn't need a table. It takes millions of billions of years to even
+crack this in MD5.
+
+As illustration: The solar system needs around 225 Million years to rotate
+around the core of the Milkyway. This is the so called [galactic year](https://en.wikipedia.org/wiki/Galactic_year).
+The sun exists since around 20 galactic years. To crack such a password, even
+when hashed in MD5 takes 3 trillion (million million) galactic years.
+
+
+
 http://hashcat.net/hashcat/
 https://www.praetorian.com/blog/statistics-will-crack-your-password-mask-structure
 https://password-hashing.net/
+https://www.randomlists.com/random-words
+
