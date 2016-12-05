@@ -1,0 +1,32 @@
+title: Webcomics
+tags:
+  - life
+  - webcomics
+  - favourites
+categories:
+  - Webcomics
+date: 2010-06-18 01:07:16
+---
+
+I am a huge fan of webcomics. Who isn&#8217;t? So I thought about made my favorites public.
+
+Here they are:
+
+*   [xkcd](http://xkcd.com)
+»A webcomic of romance, sarcasm, math, and language.«    Yeah, I love it!
+
+*   [Yet Another Fantasy Gamer Comic](http://yafgc.net)
+Great fantasy comic with a lot of nice allusions.
+
+*   [Walking The Lethe](http://walkingthelethe.com)
+Nice dark fantasy comic with demons and angels but in modern time.
+
+*   [Death and the Maiden](http://deathandmaiden.com)
+Nice comic about Death and a …yes you guess it… a maiden.
+
+*   [Zahra&#8217;s Paradise](http://www.zahrasparadise.com)
+I already wrote about this comic. It&#8217;s quite different from the others because it tells a real story about real issues in the Iran. It&#8217;s <span class="caps">NOT</span> funny. But it&#8217;s absolutely worth to be read!
+
+There are more webcomics or related websites which I don&#8217;t read frequently. For example [Abstruse Goose](http://abstrusegoose.com) and [theOatmeal](http://theoatmeal.com/comics).
+
+Thats it!
