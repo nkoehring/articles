@@ -1,0 +1,71 @@
+Productivity in the console. Today: spreadsheets with teapot.
+=============================================================
+
+As a consolero today it is not always easy to find a useful solution for some
+problems. One example are spreadsheets.
+
+So, what now?
+-------------
+
+Of course there are some programs but the most useful ones are typically GUI
+software. If you additionally get some Microsoft Excel vomit, you completely
+lacking possibilites …aren't you?
+
+No, there are ways to handle that, as long as you don't need fancy pie charting
+or the like.
+
+What you need:
+ * a way to convert the vomit to some readable format – like CSV,
+ * a useful CUI spreadsheet program!
+
+There are different ways to convert XLS files. One would of course be to simply
+ask the Microsoft chained guy for it. Another way is to use the Perl program 
+xls2csv¹ or any graphical and/or web based solution. For the challenge I just
+leave the details to the reader.
+
+Now, if you have a useful format, open it with a nifty CUI program. There are
+some console based spreadsheet programs and as far as I know two of them are
+worth to look at. One is sc² and the other on teapot³.
+
+The latter is the one I like more and so it is of interest for this article.
+
+What can I do with teapot?
+--------------------------
+
+The name Teapot derives from "Table Editor And Planner". It can handle
+spreadsheets in three dimensions and they say it is for "mathy" people.
+
+Actually, I think teapot is not that much more mathy then any other spreadsheet
+program. The big difference is, that you address cells with three dimensional
+coordinates like 3,5,0 instead of a letter-number combination or the even worse
+3D addressing of excel which uses the name of the table.
+
+One more thing: The values in cells are typed. That means, if you want a plain
+string inside a cell, you need to type it in "quotes". Anything else is
+recognised either as function or as label (more on these later).
+
+Now if you have a simple spreadsheet to calculate the income you expect out of
+your super legal business, you can do that in a view simple steps.
+
+One more thing to mention before: Teapot works with command and input modes. To
+switch to input mode, just press enter on any cell. Inside the command mode,
+you will probably do most of your stuff via the menu, which you reach via F10
+or /.
+
+So, remember that converted excel vomit? Lets open it!
+
+> teapot
+Press / or F10 to get into the Menü. The quick way is now pressing F and L,
+means: File → Load. You can now just enter the filename. Tab completion works
+here. Loading the file directly at startup works only with teapot files, as it
+seems.
+
+So, what we see now, could look like this:
+
+<code>
+</code>
+
+
+1 – http://search.cpan.org/~ken/xls2csv-1.06/script/xls2csv
+2 – http://www.linuxjournal.com/article/10699
+3 – http://www.syntax-k.de/projekte/teapot/

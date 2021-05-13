@@ -1,0 +1,77 @@
+Productivity
+============
+
+…as a consolero
+---------------
+
+The nice fancy computer world. Full of user-friendliness. We are surrounded by
+graphical user interfaces or GUIs everywhere. GUIs had their debut in 1995 with
+Microsoft Windows 95 at home and Window NT 4. Everything before, Windows 3.11,
+Windows NT 3.5 and OS/2 where graphical, too. But the whole idea of having a
+computer at home was still quite new.
+
+Today we even have a new paradigm. They call it NUI for "Natural User Interace"
+and mean touch driven interfaces on tablets, mobile phones and some notebooks.
+
+The early hackers had graphical user interfaces quite earlier. They invented
+them in the 80s and used them on machines which would rarely be recognised as a
+computer by most of todays "nerds".
+
+I personally started my adventure in 1995. But no fancy Windows driven IBM
+machine gave me the plesure of digitalized magic. It was an aged Commodore 64,
+driven by the Commodore Basic system. It frankly greeted me with blue colours
+and a simple prompt. We rarely communicated via Mouse and iconic symbols but
+with words, soldered in the pure logic of a programing language – and I was ten
+years old.
+
+Later – in 1999 – all the fancy graphical things came over me and a whole new
+world opened its gates for me. Of course it was Windows. For a couple of years
+it was my main interface for communcating with computers. I had a lot of fun.
+
+But I got healed soon…
+----------------------
+
+Or re-enlighted? I don't know, but what I know is, that Linux came its way and
+it was great! Around 2002 I installed a modern operating system and no
+graphical user interface greeted me afterwards. The World of TUIs a.k.a. Text
+User Interfaces was back and with it the hard way of learning productivity and
+the love in every detail.
+
+Of course, technical barriers made it complicated to have all the fancy
+graphical things. The open source world had to reinvend a whole bunch of wheels
+for their freedom. The price was maybe high but what they did meant to become a
+beautiful world of useful standards, security, productivity and freedom of
+choice.
+
+Later on I was able to have hardware accelerated desktop effects like burning,
+semi-transparent menus. I played alot with that but what do I use today? My
+notebook can surely handle a steamy, rotating and video playing cube flying
+over a cityscape-like representation of my filesystem. But what I want is
+productivity. So I use terminals, mostly around three of them. And I don't use
+a window "viewer" (I know, they call it window manager, too) but a real window
+manager. No integrated desktop environment, no iconic symbols cluttering up my
+wallpaper. I had them all but I found my way back to the puristic roots.
+
+Roots
+-----
+
+What I use is DWM¹, one of the most simple and featureless window managers as
+far as I know. I even have to recompile it if I want to change some
+configurations. I had to patch² its sources to handle modern TTF-Fonts, because
+of my favourite fixed-with font Monofur³. I also have all the awesome new
+things like UTF-8, millions of colours* – in my console.
+
+Also I'm totally used to things you may get slowly familiar with in the newer
+versions of Microsofts or Apples operating systems. For example a central place
+to get software. The time where someone had to find an installation executable
+somewhere in the wast planes of the internet are slowly ending. For Linux users
+these times are over since at least 15 years.
+
+
+
+* I actually only use 256 for text but I can view images as normal inside my
+  console.
+
+1) https://dwm.suckless.org
+2) 
+3) http://www.eurofurence.net/monofur.html

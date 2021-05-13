@@ -1,0 +1,144 @@
+Dell XPS 15 with Void Linux
+===========================
+
+My journey on using the Dell XPS15 productive with VOID Linux.
+
+What to expect
+--------------
+
+I started the preinstalled Windows and looked at the battery life: Windows 10
+with default energy saving settings calculates 4h at 97%.
+
+I didn't check for anything else.
+
+
+pre installation
+----------------
+
+I checked other articles so see what I have to expect. Mainly
+https://bbs.archlinux.org/viewtopic.php?id=204739 and
+https://ubuntuforums.org/showthread.php?t=2301071 .
+
+They recommended to set the set the SATA Operation from RAID to AHCI and
+disable secure boot — so I did.
+
+I bootet the VOID live system without any graphical user interface. If you
+don't want to squeeze your eyes together while in console, the first
+thing to set on a HiDPI screen is the font.
+
+```sh
+setfont sun12x22
+```
+
+Just for fun, I checked the speed of the hard drive. It is a PCIe SSD, so it
+should be pretty fast, and it is:
+
+```sh
+dd if=/dev/zero of=/dev/nvme0n1 bs=16384 count=500000
+```
+
+Needs less than 15s, so it writes with around 550MB/s.
+
+```sh
+dd if=/dev/nvme0n1 of=/dev/null bs=16384 count=500000
+```
+
+Needs less than 9s. It reads with around 950MB/s.
+
+Neat!
+
+Now to the real problems: The system recognises the WiFi adapter (Broadcom) but
+doesn't have drivers for it. The needed `brcmfmac` driver is available in Linux
+4.5, but the VOID live system still uses 4.2.
+
+Saving me the hassle of getting the WiFi to run in the Live system, I instead
+took a USB ethernet card and used a good old RJ45 for installation.
+
+I installed the system in the normal fashion but with everything inside an
+encrypted container and I also skipped GRUB as I prefer to use the EFISTUB.
+
+For more info on how to install Void manually with encrypted lvm, refer to
+https://wiki.voidlinux.eu/Install_LVM_LUKS .
+
+Bootup
+------
+
+Of course, booting initially didn't work at all. The problem is, that the UEFI
+ignores entries made with `efibootmgr`. I didn't find any way to fix that, so I
+downloaded `Shell.efi` from https://github.com/tianocore/edk2/tree/master/ShellBinPkg/UefiShell/X64
+and set up a boot entry to boot the EFI shell. I also created a `startup.nsh`
+file in the EFI root. The EFI shell will now try to run the script
+automatically.
+
+Inside startup.nsh needs to be something like:
+```
+fs0:
+/vmlinuz-linux root=UUID=3518bb68-d01e-45c9-b973-0b5d918aae96:luks root=/dev/pool/root initrd=/initramfs-linux.img rd.auto=1 rw
+```
+
+See https://wiki.archlinux.org/index.php/EFISTUB#Booting_EFISTUB for more info.
+
+The first startup took ages because the nouveau driver has problems with the
+dual graphics setup. To fix this, I installed bumblebee and blocked the nouveau
+driver. I also blocked the i2c_hdi module as described here:
+https://ubuntuforums.org/showthread.php?t=2301071 and here:
+http://wiki.yobi.be/wiki/Laptop_Dell_XPS_15#Working_after_manual_steps .
+
+After first boot
+----------------
+
+Now all the services can be set up:
+
+```sh
+echo WPA_INTERFACE=wlp1s0 > /etc/sv/wpa_supplicant/conf
+ln -s /etc/sv/wpa_supplicant /var/services
+ln -s /etc/sv/dhcpcd /var/services
+ln -s /etc/sv/bumblebeed /var/services
+sv start wpa_supplicant
+sv start bumblebeed
+```
+
+Lets also create a user, install sudo and screen and go from there:
+
+```sh
+xbps-install -S sudo screen
+groupadd $USER
+useradd -g $USER -G wheel,disk,audio,video,kvm,users,bumblebee -s /bin/zsh $USER
+passwd $USER
+visudo
+# uncomment or add following line:
+# %wheel ALL=(ALL) ALL
+
+```
+
+Log into your fancy new user account!
+
+Getting Xorg running
+--------------------
+
+Install the needed packages for Xorg:
+
+```sh
+xbps-install -S xinit xorg-minimal xrdb xset xsetroot xterm xorg-fonts xf86-video-intel nvidia xf86-input-synaptics
+# nice additions
+xbps-install -S feh xsecurelock i3-gaps i3blocks st rofi dunst font-awesome compton
+```
+
+Find lots of example configuration at my configs repo: https://github.com/nkoehring/configs.git
+
+If you want to set the keyboard layout in Xorg via config files, have a look
+at: https://wiki.archlinux.org/index.php/Keyboard_configuration_in_Xorg#Setting_keyboard_layout
+
+Settings for the touchpad to work: TODO
+
+I also looked at https://wiki.voidlinux.eu/Proprietary_Video_Drivers#Optimus
+about setting up video drivers. Not sure yet if it is really the right spot as
+I had to set the default device for screen 0 to intel.
+
+Power Management
+----------------
+
+In a comment at https://bbs.archlinux.org/viewtopic.php?pid=1581321#p1581321
+the user Utini wrote about his power management setup.
+
+Afteer setting up the powersaving `acpi -b` reported 4h20m battery lifetime.
