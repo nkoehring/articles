@@ -10,7 +10,7 @@
   "author": "koehr <n@koehr.in>",
   "license": "MIT",
   "devDependencies": {
-    "poi": "^9.6.13"
+    "poi": "^12.10.3"
   },
   "dependencies": {
     "vue-feather-icons": "^4.5.0"
